@@ -4,7 +4,6 @@ def read():
         stari = f.readline().strip().split()
         M = int(f.readline().strip())
 
-        # ATENTIE: aici e lista, nu o singura stare (AFN!)
         tranz = {}
         for _ in range(M):
             start, stop, litera = f.readline().strip().split()
@@ -60,7 +59,7 @@ def alfabet(tranz):
 def main():
     stari, tranz, init, fin, cuvinte = read()
 
-    with open("date_c2.out"c, "w") as g:
+    with open("date_c2.out", "w") as g:
         alf = alfabet(tranz)
         g.write("Alfabet: " + " ".join(sorted(alf)) + "\n")
 
