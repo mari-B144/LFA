@@ -22,12 +22,10 @@ def read():
         cuvinte = []
         for _ in range(nr_cuvinte):
             cuvinte.append(f.readline().strip())
-
     return stari, tranz, init, fin, cuvinte
 
 
 def valid(cuvant, tranz, init, fin):
-
     stari_curente = [(init, [])]
 
     for litera in cuvant:
@@ -38,7 +36,6 @@ def valid(cuvant, tranz, init, fin):
                 for stare_urmatoare in tranz[(stare, litera)]:
                     drum_nou = drum + [(stare, litera, stare_urmatoare)]
                     stari_noi.append((stare_urmatoare, drum_nou))
-
         stari_curente = stari_noi
 
     for (stare, drum) in stari_curente:
@@ -49,10 +46,8 @@ def valid(cuvant, tranz, init, fin):
 
 def alfabet(tranz):
     litere = set()
-
     for (_, litera) in tranz:
         litere.add(litera)
-
     return litere
 
 
@@ -62,10 +57,8 @@ def main():
     with open("date_c2.out", "w") as g:
         alf = alfabet(tranz)
         g.write("Alfabet: " + " ".join(sorted(alf)) + "\n")
-
         for cuvant in cuvinte:
             ok, drum = valid(cuvant, tranz, init, fin)
-
             if ok:
                 g.write("Da\n")
                 g.write("Tranzitii:\n")
@@ -73,6 +66,4 @@ def main():
                     g.write(f"{t[0]} prin {t[1]} la {t[2]}\n")
             else:
                 g.write("Nu\n")
-
-
 main()

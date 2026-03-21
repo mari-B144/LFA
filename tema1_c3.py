@@ -7,53 +7,43 @@ def read():
         tranz = {}
         for _ in range(M):
             start, stop, litera = f.readline().strip().split()
-
             key = (start, litera)
             if key not in tranz:
                 tranz[key] = []
-
             tranz[key].append(stop)
-
         init = f.readline().strip()
         nr_fin = int(f.readline().strip())
         fin = set(f.readline().strip().split())
         nr_cuvinte = int(f.readline().strip())
-
         cuvinte = []
         for _ in range(nr_cuvinte):
             cuvinte.append(f.readline().strip())
-
     return stari, tranz, init, fin, cuvinte
 
 
-def lambda_inchidere_cu_drum(stari, tranz):
+def lambda_verif(stari, tranz):
     rezultat = []
     for (stare, drum) in stari:
         rezultat.append((stare, drum))
-
     schimbat = True
     while schimbat:
         schimbat = False
         noi = []
-
         for (stare, drum) in rezultat:
             if (stare, "lambda") in tranz:
                 for nxt in tranz[(stare, "lambda")]:
                     drum_nou = drum + [(stare, "lambda", nxt)]
                     pereche = (nxt, drum_nou)
-
                     if pereche not in rezultat and pereche not in noi:
                         noi.append(pereche)
                         schimbat = True
-
         rezultat.extend(noi)
-
     return rezultat
 
 
 def valid(cuvant, tranz, init, fin):
     stari_curente = [(init, [])]
-    stari_curente = lambda_inchidere_cu_drum(stari_curente, tranz)
+    stari_curente = lambda_verif(stari_curente, tranz)
 
     for litera in cuvant:
         stari_noi = []
@@ -63,13 +53,11 @@ def valid(cuvant, tranz, init, fin):
                 for nxt in tranz[(stare, litera)]:
                     drum_nou = drum + [(stare, litera, nxt)]
                     stari_noi.append((nxt, drum_nou))
-
-        stari_curente = lambda_inchidere_cu_drum(stari_noi, tranz)
+        stari_curente = lambda_verif(stari_noi, tranz)
 
     for (stare, drum) in stari_curente:
         if stare in fin:
             return True, drum
-
     return False, []
 
 
