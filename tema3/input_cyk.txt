@@ -1,0 +1,10 @@
+S T A B
+a b
+5
+S AB
+S AT
+T SB
+A a
+B b
+S
+aabb

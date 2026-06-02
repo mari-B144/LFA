@@ -1,0 +1,8 @@
+DA
+
+tabela cyk
+            a         a         b         b
+a 0         {A}        {}        {}       {S}
+a 1                   {A}       {S}       {T}
+b 2                             {B}        {}
+b 3                                       {B}
